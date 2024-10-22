@@ -1,11 +1,18 @@
 import funciones 
-from funciones import MenuOptions,calculoDescuento,calculoIVA
 
-#nProduct = str(input("Ingrese el nombre del producto: "))
-#cantProduct = int(input("ingrese la cantidad del producto: "))
+productosList=[ ["Mazanas", 12.00 , 30],
+                ["Peras", 9.50 , 15 ],
+                ["Tomate", 15.50, 50],
+                ["Zanahoria", 11.00 , 10],
+                ["Algo", 45.00 , 48 ] ]
 
-#print("\nNombre del producto:",nProduct ,"\nCantidad:",cantProduct)
-#while True:
-#    opcion = MenuOption()
 
-print("Calculo descueento $",calculoIVA(250,21) )
+
+opcion = funciones.MenuOptions()
+while(opcion != 3):
+    if(opcion == 1):
+        funciones.fagregarProds(productosList)
+        opcion = funciones.MenuOptions()
+    elif(opcion == 2):
+        funciones.fmostrarProductos(productosList)
+        opcion = funciones.MenuOptions()

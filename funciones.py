@@ -1,28 +1,28 @@
 def MenuOptions():
     print("MENU DE GESTION DE PRODUCTOS")
-    print("\n1. REGISTRO: Ata de nuevo productos")
-    print("\n2. Visualización: Consulta de datos de productos")
-    print("\n3. Actualización: Modificar la cantidad en stock de los productos")
-    print("\n4. Eliminacion: Dar de baja los productos ")
-    print("\n5. Listado completo de los productos")
-    print("\n6. Reporte de Bajo Stock")
-    print("\n7. Salir ")
-    nOption = int( input("\nPor favor, selecciona una opción (1-7): "))
-    while (nOption <=0  or nOption > 7 ):
+    print("\n 1. REGISTRO: Alta de nuevo productos")
+    #print("\n 2. Visualización: Consulta de datos de productos")
+    #print("\n 3. Actualización: Modificar la cantidad en stock de los productos")
+    #print("\n 4. Eliminacion: Dar de baja los productos ")
+    print("\n 2. Listado completo de los productos")
+    #print("\n 6. Reporte de Bajo Stock")
+    print("\n 3. Salir ")
+    nOption = int( input("\nPor favor, selecciona una opción (1-3): "))
+    while (nOption <=0  or nOption > 3 ):
         print("\n Has Seleccinado un opcion invalida ")
-        nOption = int( input("\nPor favor, selecciona una opción (1-7): "))
-    print("\nHas seleccionado la opcion:",nOption)
+        nOption = int( input("\nPor favor, selecciona una opción (1-3): "))
+    print("\n Has seleccionado la opcion:",nOption,"\n")
 
     return nOption 
 
-def calculoIVA(precio, porcentaje):
-    pFinal =float( ((precio*porcentaje) / 100)+precio )
-    return pFinal
+def fagregarProds(mi_lista):
+    nProduct = str(input("Ingrese el nombre del producto: "))
+    precioProd = float(input("Ingrese el precio del producto:") )
+    cantProduct = int(input("ingrese la cantidad del producto: "))
 
-def calculoDescuento(precio2,porcentaje2):
-    montDesc =float( (precio2*porcentaje2) / 100)
-    p_final = float(precio2-montDesc)
-    return p_final
+    mi_lista.append([nProduct,precioProd,cantProduct])
 
-def costoTotalCompra(precio,cantProd):
-    return float( precio * cantProd  )
+def fmostrarProductos(mi_lista):
+    for mi_lista in mi_lista:
+        print( "Descripción:", mi_lista[0], "Precio:", mi_lista[1],
+        "Cantidad:", mi_lista[2])
