@@ -1,41 +1,40 @@
-import funciones 
+from Modulos import funcionesMBD as func
 import os
 
-otraLista = {
-1: {"Producto": "Manzana" , "Precio": 500.25 , "Cantidad": 200,"Categoria": "Verduras","Estado": True },
-2: {"Producto": "Pera" , "Precio": 54654.5654 , "Cantidad": 300,"Categoria":"Verduras","Estado":True },
-3: {"Producto": "Tomate " , "Precio": 50.30, "Cantidad": 101,"Categoria": "Verduras","Estado":True},
-4: {"Producto": "Zanahoria" , "Precio": 12.36 , "Cantidad": 502,"Categoria":"Verduras","Estado":True },
-5: {"Producto": "Rucula" , "Precio": 10, "Cantidad": 130,"Categoria":"Verduras","Estado":True }
-}
 
 
+activo = True
 
-os.system('cls')
-opcion = funciones.MenuOptions()
-while(opcion != 7):
-    if(opcion == 1):
-        funciones.fagregarProds(otraLista)
-        opcion = funciones.MenuOptions()
+while activo:
+    opcion =func.MENU_DE_OPCIONES()
+    if opcion == 1:
+        func.agregar_Producto()
+        opcion =func.MENU_DE_OPCIONES()
         os.system('cls')
-    elif(opcion == 2):
+    elif opcion==2:
+        func.MOSTRAR_PRODUCTOS()
+        opcion =func.MENU_DE_OPCIONES()
         os.system('cls')
-        funciones.fmostrarProductos(otraLista)
-        opcion = funciones.MenuOptions()
-    elif(opcion==3):
-        funciones.factualizar_Producto(otraLista)
-        opcion = funciones.MenuOptions()
+    elif opcion ==3:
+        print("En este momento esta opcion no se encuentra disponible, disculpe las molestias")
+        opcion =func.MENU_DE_OPCIONES()
         os.system('cls')
-    elif(opcion == 4):
-        funciones.fEliminar_producto(otraLista)
-        opcion = funciones.MenuOptions()
+    elif opcion == 4:
+        func.eliminar_productoID()
+        opcion =func.MENU_DE_OPCIONES()
         os.system('cls')
-    elif(opcion == 5):
-        funciones.fBuscar_producto(otraLista)
-        opcion = funciones.MenuOptions()
-    elif(opcion == 6):
-        funciones.fReporte_bajo_stock(otraLista,100)
-        opcion = funciones.MenuOptions()
-        
+    elif opcion == 5:
+        func.buscar_producto()
+        opcion =func.MENU_DE_OPCIONES()
+        os.system('cls')
+    elif opcion == 6:
+        func.reporte_bajoStock_BD()
+        opcion =func.MENU_DE_OPCIONES()
+        os.system('cls')
+    elif opcion == 7:
+        activo = False
 
 
+
+      
+    
