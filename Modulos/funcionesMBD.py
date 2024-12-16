@@ -1,5 +1,7 @@
 from Modulos import reutilizables as rutil
 from BaseDatos import controladorDB as CBD
+import tkinter as tk
+from tkinter import ttk
 
 #FUNCIONES PARA GESTION DEL INVENTARIO  
 
@@ -106,12 +108,58 @@ def actulizar_producto_ID_BD():
             print("EL ID NO CORRESPONDE CON ALGUN PRODUCTO !!!")
             
 
-#agregar_Producto()
-#MOSTRAR_PRODUCTOS()
-#buscar_producto()
+### FUNCIONES PARA TKINTERR 
 
-#eliminar_productoID()
-#reporte_bajoStock_BD()
+def llenar_tabla(tabla,fila):
+    if fila == False:
+        datos = CBD.leer_DB()
+        for row in datos:
+            tabla.insert("", tk.END, values=row)
+    else:
+        dato = CBD.get_ultimaFILA()
+        tabla.insert('', 'end', values=dato)
 
 
+def agregar_btn_tkinter(in_nombre ,in_descri ,in_cant,in_precio , in_cat, tabla ):
+    nom = in_nombre.get()
+    desc= in_descri.get()
+    cant = in_cant.get()
+    precio= in_precio.get()
+    categ = in_cat.get()
 
+    CBD.insertar_FILA_DB(nom,desc,cant,precio,categ)
+    llenar_tabla(tabla,True)
+
+    # Limpiar los campos de entrada después de agregar el producto
+    in_nombre.delete(0, 'end')
+    in_descri.delete(0, 'end')
+    in_cant.delete(0, 'end')
+    in_precio.delete(0, 'end')
+    in_cat.delete(0, 'end')
+
+def seleccionar_fila_tablaTkinter(idprod,in_nombre ,in_descri ,in_cant,in_precio , in_cat,tabla):
+    item = tabla.focus()
+    valores = tabla.item(item)['values']
+
+    in_nombre.delete(0, 'end')
+    in_descri.delete(0, 'end')
+    in_cant.delete(0, 'end')
+    in_precio.delete(0, 'end')
+    in_cat.delete(0, 'end')
+
+    idprod = int(valores[0])
+    in_nombre.insert(0, valores[1])
+    in_descri.insert(0, valores[2])
+    in_cant.insert(0, valores[3])
+    in_precio.insert(0, valores[4])
+    in_cat.insert(0, valores[5])
+
+
+def actualizar_producto_tkinter(id,in_nombre ,in_descri ,in_cant,in_precio , in_cat):
+    nom = in_nombre.get()
+    desc= in_descri.get()
+    cant = in_cant.get()
+    precio= in_precio.get()
+    categ = in_cat.get()
+
+    CBD.actualizar_fila_BD(id,nom,desc,cant,precio,categ)
